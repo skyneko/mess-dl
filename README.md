@@ -18,7 +18,7 @@ cd mess-dl && npm install
 ![alt text](https://raw.githubusercontent.com/skyneko/mess-dl/master/docs/5.png)
 5. Paste dữ liệu vừa copy vào file requestHeaders.txt.
 ![alt text](https://raw.githubusercontent.com/skyneko/mess-dl/master/docs/3.png)
-6. Vào file script.js thêm groupID và tinh tỉnh theo ý của bạn.
+6. Vào file script.js thêm groupID và tinh chỉnh theo ý của bạn.
 
 7. Mở terminal/command prompt gõ lệnh: 
 ``` 
