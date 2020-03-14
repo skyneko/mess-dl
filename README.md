@@ -3,7 +3,7 @@
 0. clone project:
 ```
 git clone https://github.com/skyneko/mess-dl.git
-cd mess-dl
+cd mess-dl && npm install
 ```
 
 1. Mở [facebook](http://facebook.com) và đăng nhập tài khoản.
@@ -21,7 +21,7 @@ cd mess-dl
 6. Vào file script.js thêm groupID và tinh tỉnh theo ý của bạn.
 
 7. Mở terminal/command prompt gõ lệnh: 
-```
+``` 
 node script
 ```
 ![alt text](https://raw.githubusercontent.com/skyneko/mess-dl/master/docs/4.png)
