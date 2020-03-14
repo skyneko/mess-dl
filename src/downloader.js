@@ -1,8 +1,12 @@
 "use strict"
 
 const request = require("request-promise")
+const cliProgress = require('cli-progress')
 const fs = require("fs")
 const utils = require("./utils")
+
+/* Progress Bar */
+const progressBar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic)
 
 /**
  * Tải về và lưu một ảnh.
@@ -36,8 +40,14 @@ function download(url, path) {
  */
 function downloadAll (arrayUrl, dirName, callback) {
 
-    let intArray = utils.arrNumberSplit(arrayUrl.length, utils.thread)
+    /* kiểm tra dirName */
+    if (!fs.existsSync(dirName))
+        fs.mkdirSync(dirName)
     
+    progressBar.start(arrayUrl.length, 0);
+
+    let intArray = utils.arrNumberSplit(arrayUrl.length, utils.thread)
+
     /* số lần download */
     let count = 0;
 
@@ -56,12 +66,14 @@ function downloadAll (arrayUrl, dirName, callback) {
         Promise.all(promiseArray)
             .then((imagePath) => {
 
-                //console.log("save image", imagePath)
+                progressBar.increment(imagePath.length)
 
                 if (intArray[n+1] !== undefined)
                     loop(n+1)
-                else 
-                    callback()    
+                else {
+                    progressBar.stop()
+                    callback()
+                }    
             })
     
     })( 0 )

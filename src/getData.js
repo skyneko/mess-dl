@@ -47,7 +47,7 @@ async function getImageData(userData, groupID, limit) {
      * @return {None} 
      */
     function onComplete(result) {
-        downloadAll(result, "./images", console.log)
+        downloadAll(result, "./images", () => console.log("done."))
     }
 
     /**  
