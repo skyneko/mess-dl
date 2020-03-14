@@ -58,10 +58,10 @@ function downloadAll (arrayUrl, dirName, callback) {
         // stack {thread} promise vào trong promiseArray
         for (let i=intArray[n]; i< intArray[n+1]; ++i) {
 
-            let imagePath = dirName+"/"+(++count+1) +".jpg"
+            let imagePath = dirName+"/"+(++count) +".jpg"
             
             if (arrayUrl[i+1] !== undefined)
-                promiseArray.push( download(arrayUrl[i+1].image, imagePath) )
+                promiseArray.push( download(arrayUrl[i].image, imagePath) )
         }
         Promise.all(promiseArray)
             .then((imagePath) => {
