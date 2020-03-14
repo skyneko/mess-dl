@@ -36,7 +36,7 @@ function download(url, path) {
  * @param {Array} arrayUrl
  * @param {String} dirName 
  * @return {None}
- * @callback {String} imagePath
+ * @callback {None} 
  */
 function downloadAll (arrayUrl, dirName, callback) {
 
