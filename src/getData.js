@@ -1,5 +1,8 @@
+"use strict"
+
 const request = require("request-promise")
 const qs = require("querystring")
+const downloadAll = require("./downloader")
 const utils = require("./utils")
 
 /**  
@@ -15,7 +18,7 @@ async function getImageData(userData, groupID, limit) {
     let result = []
 
     // nếu số lượng ảnh trong 1 lần request lớn hơn limit 
-    dataLength = (utils.dataLength > limit) ? limit : utils.dataLength 
+    let dataLength = (utils.dataLength > limit) ? limit : utils.dataLength 
     
     const form = qs.stringify({
         __user: uid,
@@ -40,10 +43,11 @@ async function getImageData(userData, groupID, limit) {
 
     /**
      * Xử lý mảng url sau khi lấy hết 
-     * @param {Array} result 
+     * @param {Array} result
+     * @return {None} 
      */
     function onComplete(result) {
-        fs.writeFileSync("data.json", JSON.stringify(result))
+        downloadAll(result, "./images", console.log)
     }
 
     /**  
