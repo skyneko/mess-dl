@@ -1,8 +1,11 @@
+"use strict"
+
 module.exports = {
 
     /* config */
-    startCursor: "", 
-    dataLength: 20, // số data lấy được trong mỗi request
+    startCursor: "", // cursor ban đầu, nếu muốn tải từ vị trí từ cuối -> đầu thì để trống.
+    dataLength: 200, // số data lấy được trong mỗi request.
+    thread: 5, // số ảnh download trong 1 lần.
     
     /**
      * Trả về request header
@@ -51,7 +54,7 @@ module.exports = {
     arrNumberSplit: function (n,s) {
         let m = [];
 
-            for (i = 0; i < n / s; ++i) {
+            for (let i = 0; i < n / s; ++i) {
                 m.push(s * i)
             }
 
