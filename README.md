@@ -19,7 +19,7 @@ cd mess-dl && npm install
 5. Paste dữ liệu vừa copy vào file requestHeaders.txt.
 ![alt text](https://raw.githubusercontent.com/skyneko/mess-dl/master/docs/3.png)
 6. Vào file script.js thêm groupID và tinh chỉnh theo ý của bạn.
-
++ note : groupID có thể lấy được bằng cách truy cập [messenger](htts://m.me), chọn nhóm chat và kiểm tra ID trên thanh url.
 7. Mở terminal/command prompt gõ lệnh: 
 ``` 
 node script
