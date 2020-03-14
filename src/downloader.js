@@ -60,13 +60,14 @@ function downloadAll (arrayUrl, dirName, callback) {
 
             let imagePath = dirName+"/"+(++count) +".jpg"
             
-            if (arrayUrl[i+1] !== undefined)
+            if (arrayUrl[i] !== undefined)
                 promiseArray.push( download(arrayUrl[i].image, imagePath) )
         }
         Promise.all(promiseArray)
             .then((imagePath) => {
-
-                progressBar.increment(imagePath.length)
+                
+                if (imagePath.length !== 0)
+                    progressBar.increment(imagePath.length)
 
                 if (intArray[n+1] !== undefined)
                     loop(n+1)
