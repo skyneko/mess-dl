@@ -1,5 +1,4 @@
 const request = require("request-promise")
-const fs = require("fs")
 const qs = require("querystring")
 const utils = require("./utils")
 
@@ -44,7 +43,6 @@ async function getImageData(userData, groupID, limit) {
      * @param {Array} result 
      */
     function onComplete(result) {
-        console.log("done.", result.length)
         fs.writeFileSync("data.json", JSON.stringify(result))
     }
 
