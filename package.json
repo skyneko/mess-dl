@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/skyneko/mess-dl/issues"
   },
-  "homepage": "https://github.com/skyneko/mess-dl#readme"
+  "homepage": "https://github.com/skyneko/mess-dl#readme",
+  "dependencies": {
+    "cli-progress": "^3.6.0",
+    "fs": "0.0.1-security",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
+  }
 }
