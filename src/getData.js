@@ -79,7 +79,7 @@ async function getImageData(userData, groupID, limit) {
     
         /* handle response data */ 
         let json = JSON.parse(res.slice(res.indexOf('{"'), res.length) /*  loại bỏ for (;;); để data về chuỗi json */ )  
-    
+
         json.payload[groupID].message_shared_media.edges.forEach(e => {
             
             if ((++imageCount) <= limit)
@@ -88,7 +88,7 @@ async function getImageData(userData, groupID, limit) {
 
         let lastCursor = (result[result.length - 1] !== undefined) ? result[result.length - 1].cursor : null
 
-        if (imageCount < limit && lastCursor !== null) 
+        if (imageCount < limit && lastCursor !== null && json.payload[groupID].message_shared_media.edges.length === 0) 
             get(lastCursor)
         else 
             onComplete(result) 
