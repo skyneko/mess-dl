@@ -1,5 +1,7 @@
 "use strict"
 
+const request = require("request-promise")
+
 module.exports = {
 
     /* config */
@@ -28,6 +30,7 @@ module.exports = {
             'Cookie': (cookie) ? cookie : ""
         }
     },
+
     /**
      * Lấy user id từ cookie
      * @param {String} cookie
@@ -43,6 +46,69 @@ module.exports = {
         })
     
         return uid
+    },
+
+    /**
+     * @param {String} curl
+     * @return {Object}  
+     */
+    getUserDataFromRequestHeaders: function (headerString) {
+
+        let result = new Object()
+    
+        headerString.split("\n").forEach(e => {
+    
+            if (e.split(":")[0] === "Cookie")
+                result.cookie = e.split(":")[1].trim()
+            
+            if (e.split(":")[0] === "User-Agent")
+                result.userAgent = e.split(":")[1].trim()     
+        })
+    
+        return result
+    },
+
+    /**
+     * @param {String} cookie
+     * @return {String}  
+     */
+    getFb_dtsg : function(cookie) {
+        return new Promise ((resolve, reject) => {
+
+            request({
+                method: "GET",
+                uri: "https://facebook.com/",
+                headers: this.createHeaders(cookie)
+            })
+            .then(html => {
+                
+                let fb_dtsg = this.getFromHTML(html, 'name="fb_dtsg" value="', '"')
+                resolve(fb_dtsg)
+            })
+            .catch(reject)
+        })
+    },
+
+    /**
+     * Lấy một giá trị phần tử trong chuỗi HTML
+     * 
+     * @param {String} str 
+     * @param {String} startToken
+     * @param {String} endToken
+     * @return {String} 
+     */
+    getFromHTML: function (str, startToken, endToken) {
+        var start = str.indexOf(startToken) + startToken.length;
+        if (start < startToken.length) return "";
+
+        var lastHalf = str.substring(start);
+        var end = lastHalf.indexOf(endToken);
+        if (end === -1) {
+            throw Error(
+                "Could not find endTime `" + endToken + "` in the given string."
+            );
+        }
+        return lastHalf.substring(0, end);
     },
 
     /**
