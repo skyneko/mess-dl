@@ -20,7 +20,6 @@
     "cli-progress": "^3.6.0",
     "fs": "0.0.1-security",
     "request": "^2.88.2",
-    "request-promise": "^4.2.5",
-    "facebook-messenger-api": "https://github.com/skyneko/facebook_messenger_api.git"
+    "request-promise": "^4.2.5"
   }
 }
